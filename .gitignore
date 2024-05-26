@@ -2,3 +2,4 @@
 *solution*
 *.idea*
 db.sqlite3
+mcpeek_django_*.zip
