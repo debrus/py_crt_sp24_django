@@ -31,7 +31,7 @@ class FrontEndTestCase(TestCase):
     fixtures = ['blogging_test_fixture.json', ]
 
     def setUp(self):
-        self.now = datetime.datetime.now()
+        self.now = datetime.datetime.now(datetime.timezone.utc)
         self.timedelta = datetime.timedelta(15)
         author = User.objects.get(pk=1)
         for count in range(1, 11):
