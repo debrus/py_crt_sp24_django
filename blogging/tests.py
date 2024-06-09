@@ -32,7 +32,6 @@ class FrontEndTestCase(TestCase):
 
     def setUp(self):
         self.now = datetime.datetime.now(datetime.timezone.utc)
-        self.now = datetime.datetime.now()
         self.timedelta = datetime.timedelta(15)
         author = User.objects.get(pk=1)
         for count in range(1, 11):
