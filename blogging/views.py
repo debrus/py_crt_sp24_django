@@ -8,12 +8,12 @@ from django.views.generic.detail import DetailView
 
 class PostListView(ListView):
     queryset = Post.objects.exclude(published_date__exact=None)
-    template_name = 'blogging/list.html'
+    template_name = "blogging/list.html"
 
 
 class PostDetailView(DetailView):
     queryset = Post.objects.exclude(published_date__exact=None)
-    template_name = 'blogging/detail.html'
+    template_name = "blogging/detail.html"
 
 
 def stub_view(request, *args, **kwargs):
