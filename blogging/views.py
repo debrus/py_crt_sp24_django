@@ -4,6 +4,7 @@ from django.template import loader
 from blogging.models import Post
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
+
 # syndication imports
 from django.contrib.syndication.views import Feed
 
@@ -24,7 +25,9 @@ class LatestPostsFeed(Feed):
     description = "The five most recent blog posts"
 
     def items(self):
-        return Post.objects.exclude(published_date__exact=None).order_by("-published_date")[:5]
+        return Post.objects.exclude(published_date__exact=None).order_by(
+            "-published_date"
+        )[:5]
 
     def item_title(self, item):
         return item.title
@@ -34,6 +37,21 @@ class LatestPostsFeed(Feed):
 
     def item_link(self, item):
         return f"/posts/{item.pk}/"
+
+    def item_guid(self, item):
+        return item.pk
+
+    def item_categories(self, item):
+        return item.categories.all()
+
+    def item_author_name(self, item):
+        return item.author
+
+    def item_pubdate(self, item):
+        return item.published_date
+
+    def item_updateddate(self, item):
+        return item.modified_date
 
 
 def stub_view(request, *args, **kwargs):
